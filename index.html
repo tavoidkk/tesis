@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CasaVidal · Tesis de Grado — Presentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-1: #061410;
+    --bg-2: #0A1F1A;
+    --bg-3: #0D2818;
+    --green-900: #0F3D2E;
+    --green-700: #1B5E20;
+    --green-500: #2E7D32;
+    --green-400: #4CAF50;
+    --green-300: #66BB6A;
+    --green-100: #C8E6C9;
+    --green-50:  #E8F5E9;
+    --orange-500: #F97316;
+    --orange-400: #FB923C;
+    --orange-300: #FDBA74;
+    --text-1: #E8F5E9;
+    --text-2: #A5C9AD;
+    --text-3: #6B8C73;
+    --border: rgba(76, 175, 80, 0.25);
+    --border-strong: rgba(76, 175, 80, 0.45);
+    --glass-bg: rgba(15, 61, 46, 0.45);
+    --glass-bg-strong: rgba(15, 61, 46, 0.65);
+    --shadow-glow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-orange: 0 4px 20px rgba(249, 115, 22, 0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-1);
+    background: var(--bg-1);
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at top left, rgba(27, 94, 32, 0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
+    background-attachment: fixed;
+  }
+
+  /* Subtle grid pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(76, 175, 80, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76, 175, 80, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Decorative dots */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  /* ========== PROGRESS BAR ========== */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-400) 0%, var(--orange-500) 100%);
+    z-index: 100;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  }
+
+  /* ========== SLIDE COUNTER ========== */
+  .slide-counter {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    z-index: 100;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-2);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    letter-spacing: 0.5px;
+  }
+  .slide-counter .current { color: var(--orange-400); font-weight: 600; }
+
+  /* ========== NAV DOTS ========== */
+  .nav-dots {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 14px;
+  }
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--text-3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .nav-dot:hover { background: var(--green-300); transform: scale(1.3); }
+  .nav-dot.active {
+    background: var(--orange-500);
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px var(--orange-500);
+  }
+
+  /* ========== KEYBOARD HINT ========== */
+  .kbd-hint {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 100;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    opacity: 0.7;
+  }
+  .kbd {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    color: var(--text-2);
+  }
+
+  /* ========== SLIDES CONTAINER ========== */
+  .slides {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 60px 80px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+  .slide.prev {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  /* ========== TYPOGRAPHY ========== */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--orange-500);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  h1.title {
+    font-size: clamp(32px, 4.2vw, 56px);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--green-50) 0%, var(--green-100) 50%, var(--orange-300) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+
+  h2.slide-title {
+    font-size: clamp(34px, 4vw, 52px);
+    color: #FFFFFF;
+    margin-bottom: 32px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  h2.slide-title .accent {
+    color: var(--orange-400);
+  }
+
+  h3 {
+    font-size: 21px;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  p, li {
+    font-size: 17.5px;
+    line-height: 1.65;
+    color: var(--text-2);
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--green-300);
+  }
+
+  /* ========== GLASS CARD ========== */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-glow);
+    transition: all 0.3s ease;
+  }
+  .glass.strong {
+    background: var(--glass-bg-strong);
+    border-color: var(--border-strong);
+  }
+  .glass.orange {
+    border-color: rgba(249, 115, 22, 0.35);
+    box-shadow: var(--shadow-glow), 0 0 30px rgba(249, 115, 22, 0.05);
+  }
+  .glass:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+  }
+
+  /* ========== LAYOUT HELPERS ========== */
+  .grid {
+    display: grid;
+    gap: 20px;
+  }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .items-center { align-items: center; }
+  .justify-between { justify-content: space-between; }
+  .gap-2 { gap: 8px; }
+  .gap-3 { gap: 12px; }
+  .gap-4 { gap: 16px; }
+  .gap-6 { gap: 24px; }
+
+  .text-orange { color: var(--orange-400); }
+  .text-green { color: var(--green-300); }
+  .text-mute { color: var(--text-2); }
+  .text-center { text-align: center; }
+
+  .mb-2 { margin-bottom: 8px; }
+  .mb-3 { margin-bottom: 12px; }
+  .mb-4 { margin-bottom: 16px; }
+  .mb-6 { margin-bottom: 24px; }
+  .mb-8 { margin-bottom: 32px; }
+
+  /* ========== SLIDE 1: COVER ========== */
+  .cover {
+    text-align: center;
+    align-items: center;
+  }
+  .cover .badge {
+    display: inline-block;
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.4);
+    color: var(--orange-300);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover-meta {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .cover-meta .glass {
+    padding: 16px 20px;
+  }
+  .cover-meta .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cover-meta .value {
+    color: var(--text-1);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .cover-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--text-1);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .cover-logo span { color: var(--orange-500); }
+
+  /* ========== SLIDE 2: OBJETIVO GENERAL ========== */
+  .obj-general-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px;
+    text-align: center;
+    position: relative;
+  }
+  .obj-general-card .icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 20px rgba(249, 115, 22, 0.4));
+  }
+  .obj-general-card .text {
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.5;
+    color: var(--text-1);
+    font-weight: 500;
+  }
+  .obj-general-card .text .accent {
+    color: var(--orange-400);
+    font-weight: 700;
+  }
+  .obj-general-card .corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 2px solid var(--orange-500);
+  }
+  .corner.tl { top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+  .corner.tr { top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+  .corner.bl { bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+  .corner.br { bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+  /* ========== SLIDE 2: PROBLEMÁTICA OBJETO DE ESTUDIO ========== */
+  .problem-card {
+    max-width: 1000px;
+    margin: 0 auto 28px;
+    padding: 24px 36px;
+    text-align: center;
+    position: relative;
+  }
+  .problem-card.bottom {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px 28px;
+  }
+  .problem-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .problem-question {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(17px, 1.8vw, 22px);
+    line-height: 1.4;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .problem-card.bottom .problem-question {
+    font-size: clamp(16px, 1.7vw, 20px);
+  }
+  .problem-narrative-block {
+    max-width: 1100px;
+    margin: 0 auto 24px;
+    padding: 0 32px;
+  }
+  .problem-narrative-block p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #FFFFFF;
+    opacity: 0.92;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .problem-narrative-block.top {
+    margin: 0 auto 28px;
+  }
+
+  /* ========== SLIDE 3: OBJETIVOS ESPECÍFICOS ========== */
+  .obj-card {
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .obj-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .obj-card .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .obj-card .desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    opacity: 0.92;
+  }
+  .obj-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, transparent 50%, rgba(249, 115, 22, 0.08) 50%);
+  }
+
+  /* Nuevo layout: lista vertical 2 columnas con match de fase */
+  .obj-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .obj-row {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 14px;
+    align-items: start;
+    transition: all 0.3s ease;
+  }
+  .obj-row:hover {
+    border-color: var(--orange-500);
+    transform: translateY(-2px);
+  }
+  .obj-row-num {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 2px;
+  }
+  .obj-row-num .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+  .phase-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    color: #FFFFFF;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .phase-tag.f1 { background: var(--green-500); box-shadow: 0 0 8px rgba(76, 175, 80, 0.4); }
+  .phase-tag.f2 { background: var(--green-500); box-shadow: 0 0 8px rgba(76, 175, 80, 0.4); }
+  .phase-tag.f3 { background: var(--orange-500); box-shadow: 0 0 8px rgba(249, 115, 22, 0.4); }
+  .phase-tag.f4 { background: #8B5CF6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4); }
+
+  .obj-row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .obj-row-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.35;
+  }
+  .obj-row-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 1100px) {
+    .obj-list { grid-template-columns: 1fr; }
+  }
+
+  /* ========== SLIDE 4: CAUSA · SÍNTOMA · SOLUCIÓN ========== */
+  .narrative-card {
+    max-width: 1100px;
+    margin: 0 auto 22px;
+    padding: 16px 24px;
+    text-align: center;
+    background: rgba(76, 175, 80, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-2);
+  }
+  .narrative-card strong {
+    color: var(--orange-400);
+    font-weight: 600;
+  }
+
+  .chain-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .chain-row {
+    display: grid;
+    grid-template-columns: 48px 1fr 32px 1fr 32px 1fr;
+    gap: 10px;
+    align-items: stretch;
+    padding: 8px;
+    border-radius: 14px;
+    background: linear-gradient(90deg,
+      rgba(239, 68, 68, 0.05) 0%,
+      rgba(249, 115, 22, 0.05) 50%,
+      rgba(76, 175, 80, 0.05) 100%);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .chain-row:hover {
+    background: linear-gradient(90deg,
+      rgba(239, 68, 68, 0.10) 0%,
+      rgba(249, 115, 22, 0.10) 50%,
+      rgba(76, 175, 80, 0.10) 100%);
+    border-color: var(--border-strong);
+  }
+
+  .chain-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--orange-400);
+    opacity: 0.7;
+  }
+
+  .chain-card {
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .chain-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .chain-card .type-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .chain-card .chain-text {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--text-1);
+  }
+
+  .chain-card.problem {
+    background: rgba(239, 68, 68, 0.10);
+    border-color: rgba(239, 68, 68, 0.40);
+  }
+  .chain-card.problem .type-label { color: #FCA5A5; }
+  .chain-card.problem .chain-text { color: #FFFFFF; }
+  .chain-card.problem:hover {
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.20);
+  }
+
+  .chain-card.cause {
+    background: rgba(249, 115, 22, 0.10);
+    border-color: rgba(249, 115, 22, 0.40);
+  }
+  .chain-card.cause .type-label { color: var(--orange-400); }
+  .chain-card.cause .chain-text { color: #FFFFFF; }
+  .chain-card.cause:hover {
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.20);
+  }
+
+  .chain-card.solution {
+    background: rgba(76, 175, 80, 0.12);
+    border-color: rgba(76, 175, 80, 0.45);
+  }
+  .chain-card.solution .type-label { color: var(--green-300); }
+  .chain-card.solution .chain-text { color: #FFFFFF; }
+  .chain-card.solution:hover {
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.25);
+  }
+
+  .chain-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange-400);
+    font-size: 26px;
+    font-weight: 300;
+    text-shadow: 0 0 12px rgba(249, 115, 22, 0.5);
+    user-select: none;
+  }
+
+  .slide.active .chain-row:nth-child(1) { animation: slideInUp 0.5s ease 0.20s backwards; }
+  .slide.active .chain-row:nth-child(2) { animation: slideInUp 0.5s ease 0.30s backwards; }
+  .slide.active .chain-row:nth-child(3) { animation: slideInUp 0.5s ease 0.40s backwards; }
+
+  @media (max-width: 1100px) {
+    .chain-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 12px;
+    }
+    .chain-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .chain-num { justify-content: flex-start; padding-left: 8px; }
+  }
+
+  /* ========== SLIDE 5: SOLUCIÓN ========== */
+  .solution-flow {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 14px;
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    flex-wrap: nowrap;
+  }
+  .step {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 18px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .step:hover {
+    border-color: var(--orange-500);
+    transform: translateY(-4px);
+  }
+  .step .num-badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange-500);
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: var(--shadow-orange);
+  }
+  .step .emoji { font-size: 36px; margin-bottom: 12px; display: block; }
+  .step h3 { color: var(--text-1); font-size: 16px; margin-bottom: 6px; }
+  .step p { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+  .step-arrow {
+    align-self: center;
+    color: var(--orange-500);
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .product-banner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 24px 32px;
+    background: linear-gradient(135deg, rgba(15, 61, 46, 0.7) 0%, rgba(249, 115, 22, 0.15) 100%);
+    border: 1px solid var(--orange-500);
+    border-radius: 16px;
+    box-shadow: var(--shadow-orange);
+  }
+  .product-banner .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+  }
+  .product-banner .name span { color: var(--orange-400); }
+  .product-banner .stack {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-2);
+    letter-spacing: 1px;
+  }
+
+  /* ========== SLIDE 6: METODOLOGÍA ========== */
+  .method-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: stretch;
+  }
+  .method-info { display: flex; flex-direction: column; gap: 14px; }
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-item:last-child { border-bottom: 0; }
+  .info-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+  .info-item .value {
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.5;
+  }
+  .phases-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .phase {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase:hover { border-color: var(--orange-500); }
+  .phase .head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .phase .pill {
+    background: var(--orange-500);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .phase h3 {
+    font-size: 15px;
+    color: var(--text-1);
+    margin: 0;
+  }
+  .phase .details {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .phase .details span {
+    color: var(--green-300);
+    font-weight: 500;
+  }
+  .author-tag {
+    margin-top: auto;
+    padding: 12px 16px;
+    text-align: center;
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--green-300);
+    letter-spacing: 0.5px;
+  }
+  .author-tag strong { color: var(--orange-400); }
+
+  /* ========== SLIDE 6: METODOLOGÍA (NUEVA) ========== */
+  .method-summary-big {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 1100px;
+    margin: 0 auto 22px;
+  }
+  .summary-pill {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 180px;
+  }
+  .summary-pill.big {
+    padding: 16px 26px;
+    text-align: center;
+    align-items: center;
+  }
+  .summary-pill.author {
+    border-color: rgba(249, 115, 22, 0.4);
+    background: rgba(249, 115, 22, 0.06);
+  }
+  .summary-pill .summary-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+  }
+  .summary-pill.big .summary-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .summary-pill .summary-value {
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+  .summary-pill.big .summary-value {
+    font-size: 19px;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+
+  /* Author tag inline en cada fase */
+  .author-tag-inline {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .author-tag-inline.kanban {
+    color: var(--green-300);
+    background: rgba(76, 175, 80, 0.10);
+    border-color: rgba(76, 175, 80, 0.4);
+  }
+  .author-tag-inline.hybrid {
+    color: var(--orange-400);
+    background: rgba(249, 115, 22, 0.10);
+    border-color: rgba(249, 115, 22, 0.4);
+  }
+  .author-tag-inline.kendall {
+    color: #C4B5FD;
+    background: rgba(167, 139, 250, 0.10);
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .phase-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--orange-500);
+  }
+  .phase-card.big {
+    padding: 20px 24px;
+  }
+  .phase-card .phase-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .phase-card .phase-head h3 {
+    font-size: 19px;
+    color: #FFFFFF;
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .phase-card .phase-body {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #FFFFFF;
+    opacity: 0.88;
+    margin-bottom: 12px;
+  }
+  .phase-software {
+    background: rgba(249, 115, 22, 0.08);
+    border-left: 3px solid var(--orange-500);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin-top: 6px;
+  }
+  .phase-software .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .phase-software p {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #FED7AA;
+    margin: 0;
+  }
+  .phase-software p strong {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  @media (max-width: 1100px) {
+    .phases-grid { grid-template-columns: 1fr; }
+    .method-summary-big { grid-template-columns: 1fr; }
+  }
+
+  /* ========== SLIDE 7: SOFTWARE ========== */
+  .sw-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .sw-header .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+  }
+  .sw-header .name span { color: var(--orange-400); }
+  .sw-header .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--green-300);
+    margin-top: 6px;
+  }
+  .roles-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .role-pill {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: var(--text-1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .role-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .dot.admin { background: var(--orange-500); box-shadow: 0 0 6px var(--orange-500); }
+  .dot.seller { background: var(--green-400); box-shadow: 0 0 6px var(--green-400); }
+  .dot.viewer { background: var(--text-3); }
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 1300px;
+    margin: 0 auto 20px;
+  }
+  .module {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .module:hover {
+    transform: translateY(-4px);
+    border-color: var(--orange-500);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(249, 115, 22, 0.1);
+  }
+  .module .ico {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .module .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-1);
+    margin-bottom: 4px;
+  }
+  .module .desc {
+    font-size: 11px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+  .module.ai {
+    border-color: rgba(249, 115, 22, 0.4);
+    background: linear-gradient(135deg, rgba(15, 61, 46, 0.6) 0%, rgba(249, 115, 22, 0.05) 100%);
+  }
+  .module.ai .ico { filter: drop-shadow(0 0 6px var(--orange-500)); }
+  .stack-bar {
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 14px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--green-300);
+    letter-spacing: 0.5px;
+  }
+  .stack-bar .sep { color: var(--text-3); margin: 0 6px; }
+  .stack-bar .highlight { color: var(--orange-400); font-weight: 500; }
+
+  /* Highlight cards (3 destacadas) */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 1200px;
+    margin: 0 auto 18px;
+  }
+  .highlight-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .highlight-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--orange-500);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  .highlight-card.ai {
+    border-color: rgba(249, 115, 22, 0.4);
+    background: linear-gradient(135deg, rgba(15, 61, 46, 0.65) 0%, rgba(249, 115, 22, 0.08) 100%);
+  }
+  .highlight-card .ico {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .highlight-card.ai .ico {
+    filter: drop-shadow(0 0 8px var(--orange-500));
+  }
+  .highlight-card .hc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+  .highlight-card .hc-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+
+  /* Tech block */
+  .tech-block {
+    max-width: 1300px;
+    margin: 0 auto 16px;
+    padding: 20px 28px;
+  }
+  .tech-block .tech-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--orange-400);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .tech-phases {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.4fr;
+    gap: 14px;
+  }
+  .tech-phase {
+    background: rgba(15, 61, 46, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: all 0.3s ease;
+  }
+  .tech-phase:hover {
+    border-color: var(--orange-500);
+  }
+  .tech-phase-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(76, 175, 80, 0.2);
+  }
+  .tech-phase-head .phase-pill {
+    background: var(--orange-500);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .tech-phase-head .phase-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tech-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(76, 175, 80, 0.12);
+  }
+  .tech-item:last-child {
+    border-bottom: 0;
+  }
+  .tech-item .t-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange-400);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tech-item .t-value {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #FFFFFF;
+    opacity: 0.92;
+  }
+
+  @media (max-width: 1100px) {
+    .highlight-grid { grid-template-columns: 1fr; }
+    .tech-phases { grid-template-columns: 1fr; }
+  }
+
+  /* ========== SLIDE 8: CONCLUSIONES + RECOMENDACIONES ========== */
+  .conc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .panel.orange-panel {
+    border-color: rgba(249, 115, 22, 0.35);
+    background: linear-gradient(135deg, rgba(15, 61, 46, 0.55) 0%, rgba(249, 115, 22, 0.05) 100%);
+  }
+  .panel-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--text-1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .panel-title .num-circle {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .panel.green .num-circle { background: var(--green-500); }
+  .panel.orange-panel .num-circle { background: var(--orange-500); }
+  .list-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .list-item .marker {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    margin-top: 2px;
+  }
+  .panel.green .marker { background: var(--green-700); }
+  .panel.orange-panel .marker { background: var(--orange-500); }
+  .list-item .body {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .list-item .body strong { color: var(--text-1); }
+
+  .footer-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    text-align: center;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 1.5px;
+  }
+  .footer-line .accent { color: var(--orange-400); }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .slide.active .glass,
+  .slide.active .obj-card,
+  .slide.active .symptom,
+  .slide.active .step,
+  .slide.active .phase,
+  .slide.active .module,
+  .slide.active .panel,
+  .slide.active .info-item,
+  .slide.active .list-item,
+  .slide.active .role-pill {
+    animation: slideInUp 0.5s ease backwards;
+  }
+  .slide.active .glass:nth-child(1) { animation-delay: 0.05s; }
+  .slide.active .glass:nth-child(2) { animation-delay: 0.10s; }
+  .slide.active .glass:nth-child(3) { animation-delay: 0.15s; }
+  .slide.active .glass:nth-child(4) { animation-delay: 0.20s; }
+  .slide.active .glass:nth-child(5) { animation-delay: 0.25s; }
+  .slide.active .glass:nth-child(6) { animation-delay: 0.30s; }
+  .slide.active .obj-card:nth-child(1) { animation-delay: 0.05s; }
+  .slide.active .obj-card:nth-child(2) { animation-delay: 0.10s; }
+  .slide.active .obj-card:nth-child(3) { animation-delay: 0.15s; }
+  .slide.active .obj-card:nth-child(4) { animation-delay: 0.20s; }
+  .slide.active .obj-card:nth-child(5) { animation-delay: 0.25s; }
+  .slide.active .obj-card:nth-child(6) { animation-delay: 0.30s; }
+  .slide.active .symptom:nth-child(1) { animation-delay: 0.20s; }
+  .slide.active .symptom:nth-child(2) { animation-delay: 0.25s; }
+  .slide.active .symptom:nth-child(3) { animation-delay: 0.30s; }
+  .slide.active .symptom:nth-child(4) { animation-delay: 0.35s; }
+  .slide.active .symptom:nth-child(5) { animation-delay: 0.40s; }
+  .slide.active .step:nth-child(1) { animation-delay: 0.10s; }
+  .slide.active .step:nth-child(2) { animation-delay: 0.20s; }
+  .slide.active .step:nth-child(3) { animation-delay: 0.30s; }
+  .slide.active .step:nth-child(4) { animation-delay: 0.40s; }
+  .slide.active .module:nth-child(1) { animation-delay: 0.05s; }
+  .slide.active .module:nth-child(2) { animation-delay: 0.10s; }
+  .slide.active .module:nth-child(3) { animation-delay: 0.15s; }
+  .slide.active .module:nth-child(4) { animation-delay: 0.20s; }
+  .slide.active .module:nth-child(5) { animation-delay: 0.25s; }
+  .slide.active .module:nth-child(6) { animation-delay: 0.30s; }
+  .slide.active .module:nth-child(7) { animation-delay: 0.35s; }
+  .slide.active .module:nth-child(8) { animation-delay: 0.40s; }
+
+  /* ========== SCROLLBAR ========== */
+  .slide::-webkit-scrollbar { width: 6px; }
+  .slide::-webkit-scrollbar-track { background: transparent; }
+  .slide::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  .slide::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1100px) {
+    .slide { padding: 40px 40px 90px; }
+    .modules-grid { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .problem-layout, .method-layout, .conc-layout { grid-template-columns: 1fr; }
+    .solution-flow { flex-wrap: wrap; }
+    .step-arrow { display: none; }
+  }
+  @media (max-width: 700px) {
+    .slide { padding: 24px 20px 90px; }
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+    .cover-meta { grid-template-columns: 1fr; }
+    .kbd-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="kbd-hint">
+  <span class="kbd">←</span><span class="kbd">→</span>
+  <span>navegar</span>
+</div>
+
+<div class="slide-counter">
+  <span class="current" id="currentSlide">1</span> / <span id="totalSlides">8</span>
+</div>
+
+<nav class="nav-dots" id="navDots"></nav>
+
+<div class="slides">
+
+  <!-- ============ SLIDE 1: PORTADA ============ -->
+  <section class="slide cover active" data-slide="1">
+    <div class="badge">Tesis de Grado · Junio 2026</div>
+    <div class="cover-logo">Casa<span>Vidal</span></div>
+    <h1 class="title">Plataforma web para la gestión unificada de la relación con el cliente y la logística en la Ferretería CASAVIDAL con tecnologías emergentes</h1>
+    <p class="mono" style="margin-top: 16px;">Trabajo Especial de Grado para optar al título de Ingeniero en Informática</p>
+
+    <div class="cover-meta">
+      <div class="glass">
+        <div class="label">Autores</div>
+        <div class="value">Jiménez Jorge<br/>Vidal Gustavo</div>
+      </div>
+      <div class="glass">
+        <div class="label">Tutores</div>
+        <div class="value">Dr. José Oropeza<br/>Dra. María Paz</div>
+      </div>
+      <div class="glass">
+        <div class="label">Institución</div>
+        <div class="value">Universidad Privada Dr. Rafael Belloso Chacín<br/>Facultad de Ingeniería · Escuela de Informática</div>
+      </div>
+    </div>
+
+    <p class="mono" style="margin-top: 24px; font-size: 12px;">Maracaibo, Venezuela</p>
+  </section>
+
+  <!-- ============ SLIDE 2: PROBLEMÁTICA OBJETO DE ESTUDIO ============ -->
+  <section class="slide" data-slide="2">
+    <div class="eyebrow">Contexto · 01</div>
+    <h2 class="slide-title">Problemática objeto de <span class="accent">estudio</span></h2>
+
+    <div class="problem-narrative-block top">
+      <p>
+        Las ferreterías locales —en su mayoría PyMEs— aún dependen de procesos manuales y registros en cuadernos que comprometen la confiabilidad del stock, generan pérdida de oportunidades comerciales por falta de seguimiento y disminuyen la competitividad frente a negocios que ya implementan soluciones digitales más avanzadas.
+      </p>
+      <p>
+        Esto evidencia la necesidad de un sistema de gestión digital adaptado al sector ferretero de Maracaibo, que permita modernizar los procesos de control logístico y la interacción con los clientes.
+      </p>
+    </div>
+
+    <div class="problem-card glass orange bottom">
+      <div class="problem-eyebrow">Pregunta de investigación</div>
+      <p class="problem-question">
+        ¿Qué impacto tendría la implementación de una herramienta digital en la optimización de recursos, reducción de costos y aumento de la satisfacción del cliente en este sector?
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 3: OBJETIVO GENERAL + ESPECÍFICOS ============ -->
+  <section class="slide" data-slide="3">
+    <div class="eyebrow">Objetivos · 02</div>
+    <h2 class="slide-title">Objetivo <span class="accent">General</span> y Específicos</h2>
+
+    <div class="obj-general-card glass orange" style="margin: 0 auto 32px; padding: 40px 36px; max-width: 980px;">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="icon" style="font-size: 44px; margin-bottom: 14px;">🎯</div>
+      <p class="text" style="font-size: 22px; font-weight: 600; line-height: 1.45; color: #FFFFFF;">
+        <span class="accent" style="color: var(--orange-400);">Desarrollar</span> una plataforma web para la gestión unificada de la relación con el cliente y la logística en la ferretería CASAVIDAL con <span class="accent" style="color: var(--orange-400);">tecnologías emergentes</span>.
+      </p>
+    </div>
+
+    <div class="obj-list">
+      <!-- 01 → FASE I -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">01</span>
+          <span class="phase-tag f1">Fase I</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Analizar los procesos que se llevan a cabo actualmente en la gestión logística de la Ferretería CASAVIDAL C.A.</p>
+          <p class="obj-row-desc">Caracterización del flujo operativo real mediante observación directa y entrevistas al personal clave para identificar las deficiencias.</p>
+        </div>
+      </div>
+
+      <!-- 02 → FASE I -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">02</span>
+          <span class="phase-tag f1">Fase I</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Determinar los requerimientos funcionales para la plataforma web de gestión unificada de la relación con el cliente y la logística.</p>
+          <p class="obj-row-desc">Levantamiento de las funcionalidades necesarias a partir del diagnóstico, alineadas con los objetivos del negocio ferretero.</p>
+        </div>
+      </div>
+
+      <!-- 03 → FASE II -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">03</span>
+          <span class="phase-tag f2">Fase II</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Diseñar lógicamente la plataforma web a partir de los requerimientos establecidos.</p>
+          <p class="obj-row-desc">Modelado UML (casos de uso y entidad-relación) y definición de la arquitectura cliente-servidor de 3 capas.</p>
+        </div>
+      </div>
+
+      <!-- 04 → FASE II -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">04</span>
+          <span class="phase-tag f2">Fase II</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Construir la plataforma web para la Ferretería CASAVIDAL C.A. con base en el diseño lógico.</p>
+          <p class="obj-row-desc">Codificación de los módulos de auth, clientes, productos, ventas, inventario, IA y CRM con stack Node.js + React.</p>
+        </div>
+      </div>
+
+      <!-- 05 → FASE III -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">05</span>
+          <span class="phase-tag f3">Fase III</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Demostrar la funcionalidad de la plataforma web a través de pruebas piloto.</p>
+          <p class="obj-row-desc">Ejecución de pruebas unitarias, aleatorias y E2E con Vitest y Playwright en entorno controlado de la ferretería.</p>
+        </div>
+      </div>
+
+      <!-- 06 → FASE IV -->
+      <div class="obj-row">
+        <div class="obj-row-num">
+          <span class="n">06</span>
+          <span class="phase-tag f4">Fase IV</span>
+        </div>
+        <div class="obj-row-body">
+          <p class="obj-row-title">Explicar la funcionalidad de la plataforma web con un manual de usuario.</p>
+          <p class="obj-row-desc">Elaboración del manual corporativo v1.0 con 11 capítulos, casos prácticos y guía de operación paso a paso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============ SLIDE 4: PROBLEMA · CAUSA · SOLUCIÓN ============ -->
+  <section class="slide" data-slide="4">
+    <div class="eyebrow">Análisis · 03</div>
+    <h2 class="slide-title">Problema · Causa · <span class="accent">Solución</span></h2>
+
+    <div class="narrative-card glass">
+      En este sentido, surge la necesidad de desarrollar un <strong>software CRM con integración de módulos ERP básicos</strong>, que permita a estas organizaciones mejorar la relación con sus clientes, gestionar de manera eficiente los procesos de ventas e inventario y disponer de herramientas de apoyo para la toma de decisiones estratégicas.
+    </div>
+
+    <div class="chain-flow">
+      <!-- Cadena 01 -->
+      <div class="chain-row">
+        <div class="chain-num">01</div>
+        <div class="chain-card problem">
+          <span class="type-label">Problema</span>
+          <span class="chain-text">Duplicación de registros de clientes e inventario</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card cause">
+          <span class="type-label">Causa</span>
+          <span class="chain-text">Uso de métodos tradicionales poco escalables</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card solution">
+          <span class="type-label">Solución</span>
+          <span class="chain-text">CRM + ERP básico que centraliza clientes, ventas e inventario en una sola fuente de verdad</span>
+        </div>
+      </div>
+
+      <!-- Cadena 02 -->
+      <div class="chain-row">
+        <div class="chain-num">02</div>
+        <div class="chain-card problem">
+          <span class="type-label">Problema</span>
+          <span class="chain-text">Retrasos en la entrega de productos y seguimiento de pedidos</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card cause">
+          <span class="type-label">Causa</span>
+          <span class="chain-text">Ausencia de integración tecnológica</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card solution">
+          <span class="type-label">Solución</span>
+          <span class="chain-text">Notificaciones digitales automáticas al cliente cuando el pedido está disponible</span>
+        </div>
+      </div>
+
+      <!-- Cadena 03 -->
+      <div class="chain-row">
+        <div class="chain-num">03</div>
+        <div class="chain-card problem">
+          <span class="type-label">Problema</span>
+          <span class="chain-text">Desorganización en el manejo de almacenes y pérdida de competitividad</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card cause">
+          <span class="type-label">Causa</span>
+          <span class="chain-text">Carencia de políticas de gestión logística</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-card solution">
+          <span class="type-label">Solución</span>
+          <span class="chain-text">Órdenes de compra automáticas y dashboard con métricas clave para decisiones estratégicas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 6: METODOLOGÍA ============ -->
+  <section class="slide" data-slide="6">
+    <div class="eyebrow">Metodología · 04</div>
+    <h2 class="slide-title">Metodología: <span class="accent">autores</span> y fases</h2>
+
+    <div class="method-summary-big">
+      <div class="summary-pill big">
+        <span class="summary-label">Técnicas de recolección</span>
+        <span class="summary-value">Observación directa + Entrevista no estructurada</span>
+      </div>
+      <div class="summary-pill author big">
+        <span class="summary-label">Autores base</span>
+        <span class="summary-value">Kanban &nbsp;+&nbsp; Kendall &amp; Kendall</span>
+      </div>
+    </div>
+
+    <div class="phases-grid">
+      <div class="phase-card big">
+        <div class="phase-head">
+          <span class="pill">FASE I</span>
+          <h3>Diseño del Sistema</h3>
+          <span class="author-tag-inline kanban">Kanban</span>
+        </div>
+        <p class="phase-body">Según Castellano (2019), Kanban es un sistema de señales visuales de control de producción. Esta fase define el tablero visual, las tarjetas, las columnas y los límites de trabajo en curso (WIP) que estructuran el flujo continuo de tareas del proyecto desde su inicio.</p>
+        <div class="phase-software">
+          <span class="tag">→ Aplicación al software</span>
+          <p>Se analizaron los procesos actuales y se levantaron los requerimientos funcionales mediante observación directa y entrevistas. Se construyó el tablero Kanban digital y se levantaron los <strong>23 controladores</strong> que tendría el backend (auth, clients, products, sales, dashboard, reports, etc.).</p>
+        </div>
+      </div>
+
+      <div class="phase-card big">
+        <div class="phase-head">
+          <span class="pill">FASE II</span>
+          <h3>Implementación</h3>
+          <span class="author-tag-inline kanban">Kanban</span>
+        </div>
+        <p class="phase-body">En esta fase el sistema Kanban se implementa en el equipo de trabajo: las tarjetas se mueven a través del tablero a medida que se completan las tareas, respetando los límites WIP definidos. El flujo visual se traduce en producción continua bajo políticas explícitas de control de flujo.</p>
+        <div class="phase-software">
+          <span class="tag">→ Aplicación al software</span>
+          <p>Se modeló el sistema con diagramas UML (casos de uso y entidad-relación) y se codificaron los módulos de autenticación, clientes, productos, ventas, pedidos especiales y proveedores con <strong>Prisma + Express + React</strong>.</p>
+        </div>
+      </div>
+
+      <div class="phase-card big">
+        <div class="phase-head">
+          <span class="pill">FASE III</span>
+          <h3>Mejora Continua</h3>
+          <span class="author-tag-inline hybrid">Kanban + Kendall &amp; Kendall</span>
+        </div>
+        <p class="phase-body">Kanban por sí solo carece de un enfoque estructurado para pruebas, por lo que se complementa con Kendall &amp; Kendall (2003), quien plantea que los sistemas deben probarse mediante un ciclo específico de actividades del analista y el usuario, con planificación, ejecución y validación.</p>
+        <div class="phase-software">
+          <span class="tag">→ Aplicación al software</span>
+          <p>Se ejecutaron pruebas unitarias y aleatorias sobre los servicios críticos, además de pruebas E2E de interfaz con <strong>Vitest y Playwright</strong>, corrigiendo más de 15 errores antes del despliegue del piloto.</p>
+        </div>
+      </div>
+
+      <div class="phase-card big">
+        <div class="phase-head">
+          <span class="pill">FASE IV</span>
+          <h3>Documentación</h3>
+          <span class="author-tag-inline kendall">Kendall &amp; Kendall</span>
+        </div>
+        <p class="phase-body">Kendall &amp; Kendall (2003) señala que esta fase crea un conjunto de documentos detallados que sirven como referencia completa para usuarios finales y desarrolladores, facilitando el mantenimiento, asegurando la calidad y promoviendo la transferencia de conocimiento del sistema.</p>
+        <div class="phase-software">
+          <span class="tag">→ Aplicación al software</span>
+          <p>Se elaboró la documentación técnica y se redactó el manual de usuario corporativo <strong>v1.0 (abril 2026)</strong> con 11 capítulos y la tabla de contenido del manual interno del sistema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 7: PLATAFORMA WEB CASAVIDAL ============ -->
+  <section class="slide" data-slide="7">
+    <div class="eyebrow">Plataforma · 05</div>
+    <div class="sw-header">
+      <div class="name">Plataforma Web <span>CasaVidal</span></div>
+      <div class="sub">// Sistema CRM/ERP para Ferretería — v1.0</div>
+    </div>
+    <div class="roles-bar">
+      <div class="role-pill"><span class="dot admin"></span> Administrador</div>
+      <div class="role-pill"><span class="dot seller"></span> Vendedor</div>
+      <div class="role-pill"><span class="dot viewer"></span> Visualizador</div>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-card ai">
+        <span class="ico">🤖</span>
+        <div class="hc-title">Inteligencia Artificial</div>
+        <p class="hc-desc">Motor de scoring de clientes, asistente de ventas y sugerencias inteligentes de actividades CRM. Detecta patrones de compra y recomienda acciones automáticas.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="ico">👥</span>
+        <div class="hc-title">CRM Unificado</div>
+        <p class="hc-desc">Gestión integral de clientes con categorización, timeline de actividades, registro de cotizaciones y trazabilidad total del ciclo comercial.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="ico">📦</span>
+        <div class="hc-title">Inventario Automatizado</div>
+        <p class="hc-desc">Control de stock en tiempo real con alertas de stock bajo, ajustes por movimientos, categorías y reportes de rotación de productos.</p>
+      </div>
+    </div>
+
+    <div class="tech-block glass">
+      <h3 class="tech-title">Realización técnica del software · agrupada por fases</h3>
+      <div class="tech-phases">
+        <!-- FASE 1 -->
+        <div class="tech-phase">
+          <div class="tech-phase-head"><span class="phase-pill">FASE 1</span><span class="phase-name">Diseño</span></div>
+          <div class="tech-items">
+            <div class="tech-item">
+              <span class="t-label">Arquitectura</span>
+              <span class="t-value">Cliente-servidor en 3 capas (presentación, negocio, datos) sobre Node.js 20+</span>
+            </div>
+            <div class="tech-item">
+              <span class="t-label">API REST</span>
+              <span class="t-value">23 controladores backend: auth, clients, products, sales, dashboard, reports, specialOrders, suppliers, IA, calendar y más</span>
+            </div>
+            <div class="tech-item">
+              <span class="t-label">Persistencia</span>
+              <span class="t-value">Prisma ORM sobre PostgreSQL en Neon.tech con migraciones versionadas y datos de prueba (seed)</span>
+            </div>
+          </div>
+        </div>
+        <!-- FASE 2 -->
+        <div class="tech-phase">
+          <div class="tech-phase-head"><span class="phase-pill">FASE 2</span><span class="phase-name">Implementación</span></div>
+          <div class="tech-items">
+            <div class="tech-item">
+              <span class="t-label">Frontend</span>
+              <span class="t-value">React 18 + TypeScript + Vite con TailwindCSS, Zustand para estado, React Hook Form + Zod para validaciones, Lucide para íconos y Axios para HTTP</span>
+            </div>
+          </div>
+        </div>
+        <!-- FASE 3 -->
+        <div class="tech-phase">
+          <div class="tech-phase-head"><span class="phase-pill">FASE 3</span><span class="phase-name">Mejora continua</span></div>
+          <div class="tech-items">
+            <div class="tech-item">
+              <span class="t-label">Seguridad</span>
+              <span class="t-value">Autenticación JWT con 3 roles diferenciados (Administrador, Vendedor, Visualizador) y permisos granulares por módulo</span>
+            </div>
+            <div class="tech-item">
+              <span class="t-label">Calidad</span>
+              <span class="t-value">Pruebas unitarias con Vitest, pruebas E2E con Playwright, control de versiones Git + GitHub (52 commits backend, 60 frontend)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-bar">
+      <span class="highlight">Frontend</span> React 18 · TypeScript · Vite · TailwindCSS · Zustand · React Hook Form · Zod · Axios · Lucide
+      <span class="sep">|</span>
+      <span class="highlight">Backend</span> Node.js · Express · Prisma · PostgreSQL (Neon) · JWT
+      <span class="sep">|</span>
+      <span class="highlight">Testing</span> Vitest · Playwright
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8: CONCLUSIONES + RECOMENDACIONES ============ -->
+  <section class="slide" data-slide="8">
+    <div class="eyebrow">Cierre · 06</div>
+    <h2 class="slide-title">Conclusiones y <span class="accent">Recomendaciones</span></h2>
+
+    <div class="conc-layout">
+      <div class="panel green">
+        <div class="panel-title">
+          <span class="num-circle">C</span>
+          Conclusiones
+        </div>
+
+        <div class="list-item">
+          <span class="marker">01</span>
+          <p class="body">Se diagnosticó un flujo deficiente con registros en cuadernos, sin trazabilidad y con cuellos de botella operativos.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">02</span>
+          <p class="body">Se definieron requerimientos clave: CRM, control automatizado, pedidos bajo demanda y notificaciones con IA.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">03</span>
+          <p class="body">Se diseñó una arquitectura escalable con modelado relacional y persistencia sincronizada en la nube.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">04</span>
+          <p class="body">Se construyó la plataforma con roles diferenciados, métricas en tiempo real, scoring de lealtad y caja.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">05</span>
+          <p class="body">Las pruebas piloto confirmaron cálculos precisos, filtrado en tiempo real y sincronización correcta.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">06</span>
+          <p class="body">El manual de usuario se consolida como Fuente Única de Verdad para reducir el margen de error operativo.</p>
+        </div>
+      </div>
+
+      <div class="panel orange-panel">
+        <div class="panel-title">
+          <span class="num-circle">R</span>
+          Recomendaciones
+        </div>
+
+        <div class="list-item">
+          <span class="marker">01</span>
+          <p class="body"><strong>Explotar el dashboard analítico</strong> para decisiones de compra y evitar desabastecimiento.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">02</span>
+          <p class="body"><strong>Garantizar conectividad operativa</strong> con internet estable y respaldo dedicado.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">03</span>
+          <p class="body"><strong>Auditar periódicamente roles y permisos</strong> para mantener la integridad de los datos.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">04</span>
+          <p class="body"><strong>Estandarizar ajustes de stock</strong> tras cada movimiento de inventario.</p>
+        </div>
+        <div class="list-item">
+          <span class="marker">05</span>
+          <p class="body"><strong>Expandir IA</strong> con modelos predictivos y mensajería automatizada en futuros desarrollos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-line">
+      <span class="accent">Jiménez Jorge · Vidal Gustavo</span> &nbsp;·&nbsp; Universidad Privada Dr. Rafael Belloso Chacín &nbsp;·&nbsp; Maracaibo, Junio 2026
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function() {
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    const progressBar = document.getElementById('progressBar');
+    const currentEl = document.getElementById('currentSlide');
+    const totalEl = document.getElementById('totalSlides');
+    const navDotsContainer = document.getElementById('navDots');
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    totalEl.textContent = total;
+
+    // Build nav dots
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      dot.dataset.index = i;
+      dot.addEventListener('click', () => goTo(i));
+      navDotsContainer.appendChild(dot);
+    }
+    const dots = navDotsContainer.querySelectorAll('.nav-dot');
+
+    function update() {
+      slides.forEach((s, i) => {
+        s.classList.remove('active', 'prev');
+        if (i === currentIndex) s.classList.add('active');
+        else if (i < currentIndex) s.classList.add('prev');
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+      const pct = ((currentIndex + 1) / total) * 100;
+      progressBar.style.width = pct + '%';
+      currentEl.textContent = currentIndex + 1;
+    }
+
+    function goTo(idx) {
+      if (isTransitioning || idx < 0 || idx >= total || idx === currentIndex) return;
+      isTransitioning = true;
+      currentIndex = idx;
+      update();
+      setTimeout(() => { isTransitioning = false; }, 550);
+    }
+
+    function next() { goTo(currentIndex + 1); }
+    function prev() { goTo(currentIndex - 1); }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'PageDown':
+        case ' ':
+          e.preventDefault();
+          next();
+          break;
+        case 'ArrowLeft':
+        case 'PageUp':
+          e.preventDefault();
+          prev();
+          break;
+        case 'Home':
+          e.preventDefault();
+          goTo(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goTo(total - 1);
+          break;
+        case 'f':
+        case 'F':
+          if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+              document.exitFullscreen();
+            }
+          }
+          break;
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) next();
+        else prev();
+      }
+    }, { passive: true });
+
+    // Hide keyboard hint after first navigation
+    const hint = document.querySelector('.kbd-hint');
+    let hintHidden = false;
+    function hideHint() {
+      if (!hintHidden) {
+        hintHidden = true;
+        hint.style.transition = 'opacity 0.5s';
+        hint.style.opacity = '0';
+        setTimeout(() => hint.style.display = 'none', 500);
+      }
+    }
+    document.addEventListener('keydown', hideHint, { once: true });
+
+    update();
+  })();
+</script>
+
+</body>
+</html>

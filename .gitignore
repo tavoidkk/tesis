@@ -1,0 +1,17 @@
+# Thumbs / Office temp files
+~*.tmp
+~*.temp
+.~lock.*#
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*.docx
+~$*.doc
+~$*.xlsx
+
+# Local env / IDE
+.vscode/
+.idea/
+*.log
