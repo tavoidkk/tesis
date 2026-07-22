@@ -998,34 +998,7 @@
     line-height: 1.55;
     color: #FFFFFF;
     opacity: 0.88;
-    margin-bottom: 12px;
-  }
-  .phase-software {
-    background: rgba(249, 115, 22, 0.08);
-    border-left: 3px solid var(--orange-500);
-    border-radius: 0 8px 8px 0;
-    padding: 10px 14px;
-    margin-top: 6px;
-  }
-  .phase-software .tag {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--orange-400);
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .phase-software p {
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: #FED7AA;
-    margin: 0;
-  }
-  .phase-software p strong {
-    color: #FFFFFF;
-    font-weight: 600;
+    margin-bottom: 0;
   }
 
   @media (max-width: 1100px) {
@@ -1871,10 +1844,6 @@
           <span class="author-tag-inline kanban">Kanban</span>
         </div>
         <p class="phase-body">Según Castellano (2019), Kanban es un sistema de señales visuales de control de producción. Esta fase define el tablero visual, las tarjetas, las columnas y los límites de trabajo en curso (WIP) que estructuran el flujo continuo de tareas del proyecto desde su inicio.</p>
-        <div class="phase-software">
-          <span class="tag">→ Aplicación al software</span>
-          <p>Se analizaron los procesos actuales y se levantaron los requerimientos funcionales mediante observación directa y entrevistas. Se construyó el tablero Kanban digital y se levantaron los <strong>23 controladores</strong> que tendría el backend (auth, clients, products, sales, dashboard, reports, etc.).</p>
-        </div>
       </div>
 
       <div class="phase-card big">
@@ -1884,10 +1853,6 @@
           <span class="author-tag-inline kanban">Kanban</span>
         </div>
         <p class="phase-body">En esta fase el sistema Kanban se implementa en el equipo de trabajo: las tarjetas se mueven a través del tablero a medida que se completan las tareas, respetando los límites WIP definidos. El flujo visual se traduce en producción continua bajo políticas explícitas de control de flujo.</p>
-        <div class="phase-software">
-          <span class="tag">→ Aplicación al software</span>
-          <p>Se modeló el sistema con diagramas UML (casos de uso y entidad-relación) y se codificaron los módulos de autenticación, clientes, productos, ventas, pedidos especiales y proveedores con <strong>Prisma + Express + React</strong>.</p>
-        </div>
       </div>
 
       <div class="phase-card big">
@@ -1897,10 +1862,6 @@
           <span class="author-tag-inline hybrid">Kanban + Kendall &amp; Kendall</span>
         </div>
         <p class="phase-body">Kanban por sí solo carece de un enfoque estructurado para pruebas, por lo que se complementa con Kendall &amp; Kendall (2003), quien plantea que los sistemas deben probarse mediante un ciclo específico de actividades del analista y el usuario, con planificación, ejecución y validación.</p>
-        <div class="phase-software">
-          <span class="tag">→ Aplicación al software</span>
-          <p>Se ejecutaron pruebas unitarias y aleatorias sobre los servicios críticos, además de pruebas E2E de interfaz con <strong>Vitest y Playwright</strong>, corrigiendo más de 15 errores antes del despliegue del piloto.</p>
-        </div>
       </div>
 
       <div class="phase-card big">
@@ -1910,10 +1871,6 @@
           <span class="author-tag-inline kendall">Kendall &amp; Kendall</span>
         </div>
         <p class="phase-body">Kendall &amp; Kendall (2003) señala que esta fase crea un conjunto de documentos detallados que sirven como referencia completa para usuarios finales y desarrolladores, facilitando el mantenimiento, asegurando la calidad y promoviendo la transferencia de conocimiento del sistema.</p>
-        <div class="phase-software">
-          <span class="tag">→ Aplicación al software</span>
-          <p>Se elaboró la documentación técnica y se redactó el manual de usuario corporativo <strong>v1.0 (abril 2026)</strong> con 11 capítulos y la tabla de contenido del manual interno del sistema.</p>
-        </div>
       </div>
     </div>
   </section>
