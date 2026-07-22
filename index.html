@@ -1358,6 +1358,185 @@
   }
   .footer-line .accent { color: var(--orange-400); }
 
+  /* ========== SLIDE 9: CIERRE / ¿PREGUNTAS? ========== */
+  .slide.closing {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .closing-deco {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .closing-deco-1 {
+    top: -120px; left: -120px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.35) 0%, transparent 70%);
+    animation: pulse-glow 6s ease-in-out infinite;
+  }
+  .closing-deco-2 {
+    bottom: -140px; right: -140px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.30) 0%, transparent 70%);
+    animation: pulse-glow 6s ease-in-out infinite 2s;
+  }
+  .closing-deco-3 {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(76, 175, 80, 0.10) 0%, transparent 60%);
+    animation: pulse-glow 8s ease-in-out infinite 4s;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+  .closing-deco-3 {
+    animation: pulse-glow-3 8s ease-in-out infinite 4s;
+  }
+  @keyframes pulse-glow-3 {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .closing-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .closing-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--text-1);
+    letter-spacing: -0.02em;
+  }
+  .closing-logo span { color: var(--orange-500); }
+  .closing-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--orange-400);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: -8px;
+  }
+  .closing-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(72px, 11vw, 160px);
+    line-height: 1;
+    margin: 12px 0 4px;
+    color: #FFFFFF;
+    text-shadow: 0 4px 40px rgba(76, 175, 80, 0.4), 0 2px 12px rgba(0, 0, 0, 0.5);
+    animation: title-float 4s ease-in-out infinite;
+  }
+  @keyframes title-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .closing-title .qmark {
+    color: var(--orange-500);
+    display: inline-block;
+    transform: translateY(-0.08em);
+  }
+  .closing-title .word {
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--green-100) 50%, #FFFFFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .closing-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(18px, 2.2vw, 28px);
+    color: #FFFFFF;
+    font-weight: 500;
+    opacity: 0.92;
+    font-style: italic;
+  }
+  .closing-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .closing-divider .line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--orange-500) 100%);
+  }
+  .closing-divider .line:last-child {
+    background: linear-gradient(90deg, var(--orange-500) 0%, transparent 100%);
+  }
+  .closing-divider .dot {
+    width: 8px; height: 8px;
+    background: var(--orange-500);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--orange-500);
+  }
+
+  .closing-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 32px;
+    margin-top: 8px;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+  }
+  .meta-item .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--orange-400);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .meta-item .meta-value {
+    font-size: 14px;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .closing-repos {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .repo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .repo-link:hover {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: var(--orange-500);
+    transform: translateY(-2px);
+  }
+  .repo-link .repo-ico {
+    color: var(--orange-400);
+    font-size: 14px;
+  }
+
   /* ========== ANIMATIONS ========== */
   @keyframes slideInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -1387,6 +1566,18 @@
   .slide.active .obj-card:nth-child(4) { animation-delay: 0.20s; }
   .slide.active .obj-card:nth-child(5) { animation-delay: 0.25s; }
   .slide.active .obj-card:nth-child(6) { animation-delay: 0.30s; }
+
+  /* Closing slide entry animations */
+  .slide.active.closing .closing-content > * {
+    animation: slideInUp 0.7s ease backwards;
+  }
+  .slide.active.closing .closing-logo { animation-delay: 0.10s; }
+  .slide.active.closing .closing-eyebrow { animation-delay: 0.20s; }
+  .slide.active.closing .closing-title { animation-delay: 0.30s; }
+  .slide.active.closing .closing-subtitle { animation-delay: 0.45s; }
+  .slide.active.closing .closing-divider { animation-delay: 0.55s; }
+  .slide.active.closing .closing-meta { animation-delay: 0.65s; }
+  .slide.active.closing .closing-repos { animation-delay: 0.75s; }
   .slide.active .symptom:nth-child(1) { animation-delay: 0.20s; }
   .slide.active .symptom:nth-child(2) { animation-delay: 0.25s; }
   .slide.active .symptom:nth-child(3) { animation-delay: 0.30s; }
@@ -1872,10 +2063,6 @@
         </div>
         <div class="list-item">
           <span class="marker">04</span>
-          <p class="body"><strong>Estandarizar ajustes de stock</strong> tras cada movimiento de inventario.</p>
-        </div>
-        <div class="list-item">
-          <span class="marker">05</span>
           <p class="body"><strong>Expandir IA</strong> con modelos predictivos y mensajería automatizada en futuros desarrollos.</p>
         </div>
       </div>
@@ -1883,6 +2070,58 @@
 
     <div class="footer-line">
       <span class="accent">Jiménez Jorge · Vidal Gustavo</span> &nbsp;·&nbsp; Universidad Privada Dr. Rafael Belloso Chacín &nbsp;·&nbsp; Maracaibo, Junio 2026
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9: ¿PREGUNTAS? ============ -->
+  <section class="slide closing" data-slide="9">
+    <div class="closing-deco closing-deco-1"></div>
+    <div class="closing-deco closing-deco-2"></div>
+    <div class="closing-deco closing-deco-3"></div>
+
+    <div class="closing-content">
+      <div class="closing-logo">Casa<span>Vidal</span></div>
+      <div class="closing-eyebrow">— Cierre · 07 —</div>
+
+      <h1 class="closing-title">
+        <span class="qmark">¿</span><span class="word">Preguntas</span><span class="qmark">?</span>
+      </h1>
+
+      <p class="closing-subtitle">Gracias por su atención</p>
+
+      <div class="closing-divider">
+        <span class="line"></span>
+        <span class="dot"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="closing-meta">
+        <div class="meta-item">
+          <span class="meta-label">Autores</span>
+          <span class="meta-value">Jiménez Jorge &nbsp;·&nbsp; Vidal Gustavo</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Asesores</span>
+          <span class="meta-value">Dr. José Oropeza &nbsp;·&nbsp; Dra. María Paz</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Institución</span>
+          <span class="meta-value">Universidad Privada Dr. Rafael Belloso Chacín</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Maracaibo</span>
+          <span class="meta-value">Junio 2026</span>
+        </div>
+      </div>
+
+      <div class="closing-repos">
+        <a href="https://github.com/tavoidkk/casavidal-backend" target="_blank" rel="noopener" class="repo-link">
+          <span class="repo-ico">⌬</span> Backend
+        </a>
+        <a href="https://github.com/tavoidkk/casavidal-frontend" target="_blank" rel="noopener" class="repo-link">
+          <span class="repo-ico">⬡</span> Frontend
+        </a>
+      </div>
     </div>
   </section>
 
